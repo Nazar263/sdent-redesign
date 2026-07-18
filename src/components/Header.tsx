@@ -45,8 +45,7 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      style={{ width: "100vw" }}
-      className={`fixed top-0 left-0 z-50 transition-all duration-500 overflow-x-hidden ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
           ? "glass shadow-lg shadow-primary/5 py-3"
           : "bg-transparent py-5"
