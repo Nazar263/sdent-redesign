@@ -32,7 +32,7 @@ const doctors = [
     photo: "/images/doctors/serhiichuk-ihor.jpg",
   },
   {
-    name: "Мандрейчук Ася Володимирівна",
+    name: "Мандрейчук Ася Володимирівн",
     role: "Головний асистент, гігієніст",
     photo: "/images/doctors/mandreichuk-asia.jpg",
   },
