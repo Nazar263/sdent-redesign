@@ -45,7 +45,8 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      style={{ width: "100vw" }}
+      className={`fixed top-0 left-0 z-50 transition-all duration-500 overflow-x-hidden ${
         isScrolled
           ? "glass shadow-lg shadow-primary/5 py-3"
           : "bg-transparent py-5"
@@ -65,7 +66,7 @@ export default function Header() {
               alt="S.Dent"
               width={220}
               height={64}
-              className="h-10 sm:h-12 lg:h-14 w-auto transition-transform duration-300"
+              className="h-10 sm:h-12 lg:h-14 w-auto max-w-[140px] sm:max-w-none transition-transform duration-300"
               priority
             />
           </motion.a>
@@ -122,7 +123,7 @@ export default function Header() {
             onClick={() => setIsMobileOpen(!isMobileOpen)}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="lg:hidden p-2 text-primary shrink-0 -mr-1"
+            className="lg:hidden p-2 text-primary shrink-0"
             aria-label="Toggle menu"
           >
             <AnimatePresence mode="wait">
