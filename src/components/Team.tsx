@@ -36,6 +36,16 @@ const doctors = [
     role: "Головний асистент, гігієніст",
     photo: "/images/doctors/mandreichuk-asia.jpg",
   },
+  {
+    name: "Березуєва Тетяна Олексіївна",
+    role: "Адміністратор",
+    photo: "/images/doctors/berezuieva-tetiana.jpg",
+  },
+  {
+    name: "Тетяна",
+    role: "Стерильна медсестра",
+    photo: "/images/doctors/tetiana.jpg",
+  },
 ];
 
 export default function Team() {
