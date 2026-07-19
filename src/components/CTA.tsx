@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, List } from "lucide-react";
 import { Reveal, Float, MagneticButton } from "./animations";
 
-export default function CTA() {
+export default function CTA({ onPriceListOpen }: { onPriceListOpen?: () => void }) {
   return (
     <section className="py-24 lg:py-32 bg-warm relative overflow-hidden noise-overlay">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -97,6 +97,18 @@ export default function CTA() {
                         className="transition-transform duration-300 group-hover:translate-x-1"
                       />
                     </motion.a>
+                  </MagneticButton>
+
+                  <MagneticButton strength={0.15}>
+                    <motion.button
+                      onClick={onPriceListOpen}
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.2)" }}
+                      whileTap={{ scale: 0.97 }}
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 text-white font-semibold rounded-full border border-white/20 transition-colors"
+                    >
+                      <List size={18} />
+                      Прайс-лист
+                    </motion.button>
                   </MagneticButton>
 
                   <MagneticButton strength={0.15}>

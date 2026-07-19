@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Phone, MapPin, Clock, Heart } from "lucide-react";
+import { Phone, MapPin, Clock, Heart, List } from "lucide-react";
 import { Reveal, Stagger, StaggerItem } from "./animations";
 
 const footerLinks = [
@@ -28,7 +28,7 @@ const socialLinks = [
   },
 ];
 
-export default function Footer() {
+export default function Footer({ onPriceListOpen }: { onPriceListOpen?: () => void }) {
   return (
     <footer className="bg-text text-white relative overflow-hidden">
       {/* Subtle gradient at top */}
@@ -89,6 +89,16 @@ export default function Footer() {
                   </motion.a>
                 </li>
               ))}
+              <li>
+                <motion.button
+                  onClick={onPriceListOpen}
+                  whileHover={{ x: 4 }}
+                  className="text-white/50 hover:text-accent transition-colors text-sm inline-flex items-center gap-2"
+                >
+                  <List size={14} />
+                  Прайс-лист
+                </motion.button>
+              </li>
             </ul>
           </StaggerItem>
 

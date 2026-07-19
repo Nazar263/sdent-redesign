@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -10,11 +13,14 @@ import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
 import Contacts from "@/components/Contacts";
 import Footer from "@/components/Footer";
+import PriceList from "@/components/PriceList";
 
 export default function Home() {
+  const [isPriceListOpen, setIsPriceListOpen] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header onPriceListOpen={() => setIsPriceListOpen(true)} />
       <main>
         <Hero />
         <About />
@@ -24,10 +30,14 @@ export default function Home() {
         <Gallery />
         <Reviews />
         <FAQ />
-        <CTA />
+        <CTA onPriceListOpen={() => setIsPriceListOpen(true)} />
         <Contacts />
       </main>
-      <Footer />
+      <Footer onPriceListOpen={() => setIsPriceListOpen(true)} />
+      <PriceList
+        isOpen={isPriceListOpen}
+        onClose={() => setIsPriceListOpen(false)}
+      />
     </>
   );
 }

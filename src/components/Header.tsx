@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, List } from "lucide-react";
 import Image from "next/image";
 
 const navLinks = [
@@ -15,7 +15,7 @@ const navLinks = [
   { href: "#contacts", label: "Контакти" },
 ];
 
-export default function Header() {
+export default function Header({ onPriceListOpen }: { onPriceListOpen?: () => void }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -45,7 +45,7 @@ export default function Header() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 overflow-hidden ${
         isScrolled
           ? "glass shadow-lg shadow-primary/5 py-3"
           : "bg-transparent py-5"
@@ -107,6 +107,15 @@ export default function Header() {
               <Phone size={16} />
               +38 097 443 3639
             </motion.a>
+            <motion.button
+              onClick={onPriceListOpen}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-text-secondary hover:text-primary border border-border hover:border-accent/30 rounded-full transition-all duration-300"
+            >
+              <List size={16} />
+              Прайс
+            </motion.button>
             <motion.a
               href="#contacts"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 40px -10px rgba(27, 58, 75, 0.3)" }}
@@ -167,7 +176,13 @@ export default function Header() {
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setIsMobileOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileOpen(false);
+                    setTimeout(() => {
+                      document.getElementById(link.href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 * i }}
@@ -189,9 +204,24 @@ export default function Header() {
                   <Phone size={16} />
                   +38 097 443 3639
                 </a>
+                <button
+                  onClick={() => {
+                    setIsMobileOpen(false);
+                    onPriceListOpen?.();
+                  }}
+                  className="mx-4 py-3 border border-border text-text text-center text-sm font-semibold rounded-full hover:bg-warm transition-colors"
+                >
+                  Прайс-лист
+                </button>
                 <a
                   href="#contacts"
-                  onClick={() => setIsMobileOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileOpen(false);
+                    setTimeout(() => {
+                      document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                  }}
                   className="mx-4 py-3 bg-primary text-white text-center text-sm font-semibold rounded-full"
                 >
                   Записатися
